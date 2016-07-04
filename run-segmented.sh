@@ -25,20 +25,20 @@ basename="${filename%.*}"
 . path.sh
 
 mkdir -p build/audio/base
-
+echo 'begin segment'
 # un-shorten-ify SPH files
-if [ $extension == "sph" ]; then
-    sph2pipe $1 > build/audio/base/$basename.unshorten
-    sox build/audio/base/$basename.unshorten -c 1 build/audio/base/$basename.wav rate -v 16k
-else
-    sox $1 -c 1 build/audio/base/$basename.wav rate -v 16k
-fi
+#if [ $extension == "sph" ]; then
+#    sph2pipe $1 > build/audio/base/$basename.unshorten
+#    sox build/audio/base/$basename.unshorten -c 1 build/audio/base/$basename.wav rate -v 16k
+#else
+#    sox $1 -c 1 build/audio/base/$basename.wav rate -v 16k
+#fi
 
 mkdir -p build/diarization/$basename
 mkdir -p build/trans/$basename
 
 # decision logic: make STM from various formats, currently .cha
-
+echo 'decision logic'
 if [ -f $dirname/$basename.cha ]; then
   echo "CHA file found: " $dirname/$basename.cha
   # CHA format
@@ -52,7 +52,7 @@ elif [ -f $dirname/$basename.stm ]; then
   echo "STM file found: " $dirname/$basename.stm
   cp $dirname/$basename.stm build/trans/$basename/
 fi
-
+echo 'decision logic is over'
 # code from run-scored.sh to create show.seg from .STM
 cat build/trans/$basename/$basename.stm | grep -v "inter_segment_gap" | grep -v "ignore_time_segment_in_scoring" | awk '{OFMT = "%.0f"; print $1,$2,$4*100,($5-$4)*100,"M S U",$2}' > build/diarization/$basename/show.seg
 

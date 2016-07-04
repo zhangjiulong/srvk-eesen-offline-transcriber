@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 # Use this file to override various settings
--include /vagrant/Makefile.options
+-include /home/zhangjl/git/asr/eesen-offline-transcriber.bak/Makefile.options
 
 # Set to 'yes' if you want to do speaker ID for trs files
 DO_SPEAKER_ID?=no
@@ -25,20 +25,20 @@ SID_THRESHOLD?=13
 #    show.spl.seg   : segments longer than 20 sec are split
 #    show.spl10.seg : segments longer than 10 sec are split
 #    show.g.seg     : the gender and the bandwith are detected
-SEGMENTS ?= show.seg
+#SEGMENTS ?= show.i.seg
 
 # Where is Kaldi root directory?
-KALDI_ROOT?=~/eesen
+KALDI_ROOT?=/home/zhangjl/git/asr/eesen4OffLineDecode
 
-GRAPH_DIR?=$(EESEN_ROOT)/asr_egs/tedlium/v1/data/lang_phn_test
-MODEL_DIR?=$(EESEN_ROOT)/asr_egs/tedlium/v1/exp/train_phn_l5_c320
+#GRAPH_DIR?=$(EESEN_ROOT)/asr_egs/tedlium/v1/data/lang_phn_test
+#MODEL_DIR?=$(EESEN_ROOT)/asr_egs/tedlium/v1/exp/train_phn_l5_c320
 
 # How many processes to use for one transcription task
 # must be more than number of speakers, which for lium segmentation is often only 1
 njobs ?= 1
 
 # How many threads to use in each process
-#nthreads ?= 1
+#nthreads ?= 2
 
 # add Kaldi binaries to path
 PATH := utils:$(KALDI_ROOT)/src/bin:$(KALDI_ROOT)/tools/openfst/bin:$(KALDI_ROOT)/src/fstbin/:$(KALDI_ROOT)/src/gmmbin/:$(KALDI_ROOT)/src/featbin/:$(KALDI_ROOT)/src/lm/:$(KALDI_ROOT)/src/sgmmbin/:$(KALDI_ROOT)/src/sgmm2bin/:$(KALDI_ROOT)/src/fgmmbin/:$(KALDI_ROOT)/src/latbin/:$(KALDI_ROOT)/src/nnetbin:$(KALDI_ROOT)/src/nnet2bin/:$(KALDI_ROOT)/src/kwsbin:$(KALDI_ROOT)/src/ivectorbin:$(PATH)
@@ -97,7 +97,8 @@ build/audio/base/%.wav: src-audio/%.sph
 
 build/audio/base/%.wav: src-audio/%.wav
 	mkdir -p `dirname $@`
-	sox $^ -c 1 -2 build/audio/base/$*.wav rate -v $(sample_rate)
+	sox $^ -c 1 build/audio/base/$*.wav rate -v $(sample_rate)
+	#sox $^ -c 1 -2 build/audio/base/$*.wav rate -v $(sample_rate)
 
 build/audio/base/%.wav: src-audio/%.mp3
 	mkdir -p `dirname $@`
