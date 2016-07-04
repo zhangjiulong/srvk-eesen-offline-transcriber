@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 # Use this file to override various settings
--include /home/zhangjl/git/asr/eesen-offline-transcriber.bak/Makefile.options
+-include /home/zhangjl/git/asr/eesen-offline-transcriber/Makefile.options
 
 # Set to 'yes' if you want to do speaker ID for trs files
 DO_SPEAKER_ID?=no
@@ -97,8 +97,8 @@ build/audio/base/%.wav: src-audio/%.sph
 
 build/audio/base/%.wav: src-audio/%.wav
 	mkdir -p `dirname $@`
-	sox $^ -c 1 build/audio/base/$*.wav rate -v $(sample_rate)
-	#sox $^ -c 1 -2 build/audio/base/$*.wav rate -v $(sample_rate)
+	#sox $^ -c 1 build/audio/base/$*.wav rate -v $(sample_rate)
+	sox $^ -c 1 -2 build/audio/base/$*.wav rate -v $(sample_rate)
 
 build/audio/base/%.wav: src-audio/%.mp3
 	mkdir -p `dirname $@`
