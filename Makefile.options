@@ -1,6 +1,6 @@
 KALDI_ROOT=/home/zhangjl/git/asr/eesen
 EESEN_ROOT=/home/zhangjl/git/asr/eesen
-SEGMENTS=show.i.seg
+SEGMENTS=show.s.seg
 
 # 8k models from switchboard
 #ACWT=0.6
