@@ -20,8 +20,8 @@ SEGMENTS=show.s.seg
 # td v3000
 ACWT=0.7
 # choose one GRAPH_DIR below
-GRAPH_DIR?=/home/zhangjl/dataCenter/modelCenter/td/lg
+GRAPH_DIR?=/asrDataCenter/dataCenter/modelCenter/lm/td
 # most general, largest vocabulary/grammar
-MODEL_DIR?=/home/zhangjl/dataCenter/modelCenter/td/8k16bit/1500/train_phn_l5_c320
+MODEL_DIR?=/asrDataCenter/dataCenter/modelCenter/asr/td/8k16bit/3000/train_phn_l5_c320
 sample_rate=8k
 fbank=make_fbank
