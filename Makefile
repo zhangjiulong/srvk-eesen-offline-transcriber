@@ -25,7 +25,7 @@ SID_THRESHOLD?=13
 #    show.spl.seg   : segments longer than 20 sec are split
 #    show.spl10.seg : segments longer than 10 sec are split
 #    show.g.seg     : the gender and the bandwith are detected
-#SEGMENTS ?= show.i.seg
+SEGMENTS ?= show.i.seg
 
 # Where is Kaldi root directory?
 KALDI_ROOT?=/home/zhangjl/git/asr/eesen4OffLineDecode
@@ -97,8 +97,7 @@ build/audio/base/%.wav: src-audio/%.sph
 
 build/audio/base/%.wav: src-audio/%.wav
 	mkdir -p `dirname $@`
-	#sox $^ -c 1 build/audio/base/$*.wav rate -v $(sample_rate)
-	sox $^ -c 1 -2 build/audio/base/$*.wav rate -v $(sample_rate)
+	sox $^ -c 1 build/audio/base/$*.wav rate -v $(sample_rate)
 
 build/audio/base/%.wav: src-audio/%.mp3
 	mkdir -p `dirname $@`

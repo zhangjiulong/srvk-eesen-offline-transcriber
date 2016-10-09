@@ -2,7 +2,7 @@
 SHELL := /bin/bash
 
 # Use this file to override various settings
--include /vagrant/Makefile.options
+-include /home/zhangjl/git/asr/eesen-offline-transcriber/Makefile.options
 
 # Set to 'yes' if you want to do speaker ID for trs files
 DO_SPEAKER_ID?=no
@@ -26,7 +26,7 @@ SID_THRESHOLD?=13
 #    show.spl.seg   : segments longer than 20 sec are split
 #    show.spl10.seg : segments longer than 10 sec are split
 #    show.g.seg     : the gender and the bandwith are detected
-SEGMENTS ?= show.seg
+SEGMENTS ?= show.i.seg
 
 # Where is Kaldi root directory?
 KALDI_ROOT?=~/eesen
